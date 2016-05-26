@@ -36,6 +36,7 @@ function geolocationSuccess(position) {
   var myOptions = {
     zoom : 16,
     center : userLatLng,
+        // center : {lat: -34.397, lng: 150.644},
     mapTypeId : google.maps.MapTypeId.ROADMAP
   };
   // Draw the map - you have to use 'getElementById' here.
