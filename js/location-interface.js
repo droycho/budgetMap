@@ -1,6 +1,26 @@
+var map;
+var infowindow;
+
 $( document ).ready(function() {
   $('#locateUser').click(locateUser);
 });
+
+function initMap() {
+  var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: userLatLng,
+    zoom: 15
+  });
+
+  infowindow = new google.maps.InfoWindow();
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: userLatLng,
+    radius: 500,
+    type: ['park']
+  }, callback);
+}
 
 //google maps functions
 function locateUser() {
@@ -36,7 +56,6 @@ function geolocationSuccess(position) {
   var myOptions = {
     zoom : 16,
     center : userLatLng,
-        // center : {lat: -34.397, lng: 150.644},
     mapTypeId : google.maps.MapTypeId.ROADMAP
   };
   // Draw the map - you have to use 'getElementById' here.
